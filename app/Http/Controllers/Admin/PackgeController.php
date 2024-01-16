@@ -4,27 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Categorypackage;
+use Illuminate\Support\Facades\Validator;
+
 use App\Models\Package;
 
-use Illuminate\Support\Facades\Validator;
-use App\Exports\CategoryExport;
-use Maatwebsite\Excel\Facades\Excel;
-
-class CategoryController extends Controller
+class PackgeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Categorypackage::all();
-        return view('admin.category.index', compact('data'));
-    }
-
-    public function dataCategoryExcel()
-    {
-        return Excel::download(new CategoryExport, 'category.xlsx');
+        $data = Package::all();
+        return view('admin.packages.index',compact('data'));
     }
 
     /**
@@ -32,9 +24,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $model = new Categorypackage;
+        $model = new Package;
 
-        return view('admin.category.form', compact('model'));
+        return view('admin.packages.form',compact('model'));
     }
 
     /**
@@ -43,23 +35,28 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => 'required'
         ]);
 
+        // dd($request->hasFile('image'));
         if ($validator->fails()) {
             return redirect()
                 ->back()
                 ->withErrors($validator->errors())
                 ->withInput($request->all());
         } else {
-            $data = new Categorypackage();
-            $data->name = $request->name;
-            $data->save();
-
-            return redirect()
-                ->route('category.index')
+                $id = auth()->user()->id;
+                $data =  new Package();
+                $data->user_id = $id;
+                $data->name = $request->name;
+                $data->description = $request->description;
+                $data->price = $request->price;
+                $data->save();
+    
+                return redirect()
+                ->route('package.index')
                 ->with('message', 'Data berhasil disimpan.');
-        }
+            }
     }
 
     /**
@@ -75,9 +72,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $model = Categorypackage::query()->findOrFail($id);
-
-        return view('admin.category.form', compact('model'));
+        $model = Package::find($id);
+        return view('admin.packages.form',compact('model'));
     }
 
     /**
@@ -86,23 +82,28 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => 'required'
         ]);
 
+        // dd($request->hasFile('image'));
         if ($validator->fails()) {
             return redirect()
                 ->back()
                 ->withErrors($validator->errors())
                 ->withInput($request->all());
         } else {
-            $data = Categorypackage::query()->findOrFail($id);
-            $data->name = $request->name;
-            $data->save();
-
-            return redirect()
-                ->route('category.index')
+                $id = auth()->user()->id;
+                $data =  Package::find($id);
+                $data->user_id = $id;
+                $data->name = $request->name;
+                $data->description = $request->description;
+                $data->price = $request->price;
+                $data->save();
+    
+                return redirect()
+                ->route('package.index')
                 ->with('message', 'Data berhasil disimpan.');
-        }
+            }
     }
 
     /**
@@ -110,16 +111,10 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        // Hapus semua baris di tabel "packages" yang memiliki "category_id" sama dengan $id
-        Package::where('category_id', $id)->delete();
+        $data =  Package::find($id);
+        $data->delete();
 
-        // Cari dan hapus baris di tabel "categorypackages" berdasarkan "id"
-        $categorypackage = Categorypackage::find($id);
-        if ($categorypackage) {
-            $categorypackage->delete();
-            return redirect()->back()->with('message', 'Data berhasil dihapus');
-        } else {
-            return redirect()->back()->with('message', 'Data tidak ditemukan');
-        }
+        return redirect()
+        ->back()->with('message','data deleted!');
     }
 }

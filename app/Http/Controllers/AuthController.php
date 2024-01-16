@@ -77,7 +77,7 @@ class AuthController extends Controller
                 // jika user superadmin
                 return redirect()->intended('/admin');
             } else {
-                return redirect()->intended('/customer');
+                return redirect()->intended('/cabang');
             }
         }
 

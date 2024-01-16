@@ -60,31 +60,27 @@
                             <div class="nav-link-icon"><i data-feather="activity"></i></div>
                             Dashboard
                         </a>
-                        <a class="nav-link" href="{{ route('category.index') }}">
+                        <a class="nav-link {{ request()->routeIs('admin.afiliate') ? 'active' : '' }}" href="{{route('package.index')}}">
                             <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
-                            category
+                            Package
                         </a>
-                        <a class="nav-link" href="{{ route('packages.index') }}">
+                        <a class="nav-link" href="">
                             <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
-                            kelola paket fotografi
+                            Additional
                         </a>
-                        {{-- <a class="nav-link" href="{{ route('themes.index') }}">
+                        <a class="nav-link" href="">
                             <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
-                            kelola tema
-                        </a> --}}
-                        <a class="nav-link" href="{{ route('transaksis.index') }}">
-                            <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
-                            kelola transaksi
+                            Pas Foto
                         </a>
-                        {{-- <a class="nav-link" href="{{ route('dashboard.pengiriman.index') }}">
-                            <div class="nav-link-icon"><i data-feather="clipboard"></i></div>
-                           Pengiriman
-                        </a> --}}
-                        {{-- <a class="nav-link" href="{{ route('customers.index') }}">
+                        <a class="nav-link" href="">
                             <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
-                            data pengguna
-                        </a> --}}
-                        <a class="nav-link" href="{{ route('users.index') }}">
+                           Customers
+                        </a>
+                        <a class="nav-link" href="">
+                            <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
+                            Booking
+                        </a>
+                        <a class="nav-link" href="">
                             <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
                             data user
                         </a>

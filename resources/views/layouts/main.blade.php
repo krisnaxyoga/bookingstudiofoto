@@ -59,18 +59,18 @@
                             Dashboard
                         </a>
                         <a class="nav-link" href="/">
-                            <div class="nav-link-icon"><i data-feather="activity"></i></div>
+                            <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
                             Home Page
                         </a>
-                        {{-- <a class="nav-link" href="{{ route('dashboard.pengiriman.index') }}">
-                            <div class="nav-link-icon"><i data-feather="clipboard"></i></div>
-                           Pengiriman
-                        </a> --}}
-                        <a class="nav-link" href="{{route('payment.transaksi')}}">
+                        <a class="nav-link" href="#">
                             <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
-                            riwayat transaksi
+                           Booking
                         </a>
-                        <a class="nav-link" href="{{route('customer.profile',Auth::user()->id)}}">
+                        <a class="nav-link" href="#">
+                            <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
+                            Customers
+                        </a>
+                        <a class="nav-link" href="">
                             <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
                             edit profil
                         </a>

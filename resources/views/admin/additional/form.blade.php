@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','package')
+@section('title','additional')
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -15,7 +15,7 @@
                             @endforeach
                         </div>
                     @endif
-                    <form action="@if($model->exists) {{ route('package.update', $model->id) }} @else {{ route('package.store') }} @endif" method="POST" enctype="multipart/form-data">
+                    <form action="@if($model->exists) {{ route('additional.update', $model->id) }} @else {{ route('additional.store') }} @endif" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method($model->exists ? 'PUT' : 'POST')
 
@@ -23,15 +23,12 @@
                             <label class="small mb-1">Name <span class="text-danger">*</span></label>
                             <input class="form-control form-control-solid" name="name" type="text" placeholder="Name" value="{{ old('name', $model->name) }}" />
                         </div>
-                        
-                        <div class="form-group">
-                            <label class="small mb-1">Description <span class="text-danger">*</span></label>
-                            <textarea class="form-control form-control-solid" name="description" id="" cols="30" rows="10" value="{{ old('description', $model->description) }}">{{ old('description', $model->description) }}</textarea>
-                        </div>
+
                         <div class="form-group">
                             <label class="small mb-1">Price <span class="text-danger">*</span></label>
-                            <input class="form-control form-control-solid" name="price" type="number" placeholder="price" value="{{ old('price', $model->price) }}" />
+                            <input class="form-control form-control-solid" name="price" type="number" placeholder="Name" value="{{ old('name', $model->name) }}" />
                         </div>
+
                         <div class="form-group">
                             <button class="btn btn-primary float-right" type="submit"><i class="far fa-save mr-1"></i> Simpan</button>
                         </div>

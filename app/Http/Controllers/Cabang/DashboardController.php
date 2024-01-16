@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace App\Http\Controllers\Cabang;
 
 use App\Http\Controllers\Controller;
 use App\Models\Package;
@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('customer/Index');
+        return view('cabang.Index');
     }
 
     /**

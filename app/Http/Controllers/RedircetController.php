@@ -11,7 +11,7 @@ class RedircetController extends Controller
         if (auth()->user()->role_id === 1) {
             return redirect('/admin');
         } else{
-            return redirect('/customer');
+            return redirect('/cabang');
         }
     }
 }

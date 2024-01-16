@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace App\Http\Controllers\Cabang;
 
 use App\Exports\TranscustExport;
 use App\Http\Controllers\Controller;

@@ -15,14 +15,15 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $customer = Customer::count();
-        $undangan = Order::where('type_order','undangan-online')->count();
-        $paket = Order::where('type_order','paket-foto')->count();
-        $total = Order::where('status','berhasil')->sum('total');
+        // $customer = Customer::count();
+        // $undangan = Order::where('type_order','undangan-online')->count();
+        // $paket = Order::where('type_order','paket-foto')->count();
+        // $total = Order::where('status','berhasil')->sum('total');
 
-        $totalorder = Order::count();
+        // $totalorder = Order::count();
 
-        return view('admin.index',compact('customer','undangan','paket','total','totalorder'));
+        return view('admin.index');
+        // ,compact('customer','undangan','paket','total','totalorder'));
     }
 
     /**
