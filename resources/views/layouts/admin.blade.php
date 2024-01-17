@@ -60,17 +60,21 @@
                             <div class="nav-link-icon"><i data-feather="activity"></i></div>
                             Dashboard
                         </a>
-                        <a class="nav-link {{ request()->routeIs('admin.afiliate') ? 'active' : '' }}" href="{{route('package.index')}}">
+                        <a class="nav-link {{ request()->routeIs('package.index') ? 'active' : '' }}" href="{{route('package.index')}}">
                             <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
                             Package
                         </a>
-                        <a class="nav-link" href="">
+                        <a class="nav-link {{ request()->routeIs('additional.index') ? 'active' : '' }}" href="{{route('additional.index')}}">
                             <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
                             Additional
                         </a>
-                        <a class="nav-link" href="">
+                        <a class="nav-link {{ request()->routeIs('pasfoto.index') ? 'active' : '' }}" href="{{route('pasfoto.index')}}">
                             <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
                             Pas Foto
+                        </a>
+                        <a class="nav-link {{ request()->routeIs('calender') ? 'active' : '' }}" href="{{route('calender')}}">
+                            <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>
+                           Calender available
                         </a>
                         <a class="nav-link" href="">
                             <div class="nav-link-icon"><i data-feather="chevrons-right"></i></div>

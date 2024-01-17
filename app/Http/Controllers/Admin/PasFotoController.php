@@ -4,19 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Validator;
-use App\Models\Additional;
+use App\Models\PasFoto;
 
-class AddditionalController extends Controller
+class PasFotoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Additional::all();
-        return view('admin.additional.index',compact('data'));
+        $data = PasFoto::all();
+        return view('admin.pasfoto.index',compact('data'));
     }
 
     /**
@@ -24,9 +23,9 @@ class AddditionalController extends Controller
      */
     public function create()
     {
-        $model = new Additional;
+        $model = new PasFoto;
 
-        return view('admin.additional.form',compact('model'));
+        return view('admin.pasfoto.form',compact('model'));
     }
 
     /**
@@ -45,13 +44,13 @@ class AddditionalController extends Controller
                 ->withErrors($validator->errors())
                 ->withInput($request->all());
         } else {
-                $data =  new Additional();
+                $data =  new PasFoto();
                 $data->name = $request->name;
-                $data->price = $request->price;
+                $data->description = $request->description;
                 $data->save();
     
                 return redirect()
-                ->route('additional.index')
+                ->route('pasfoto.index')
                 ->with('message', 'Data berhasil disimpan.');
             }
     }
@@ -69,9 +68,9 @@ class AddditionalController extends Controller
      */
     public function edit(string $id)
     {
-        $model = Additional::find($id);
-        
-        return view('admin.additional.form',compact('model'));
+        $model = PasFoto::find($id);
+
+        return view('admin.pasfoto.form',compact('model'));
     }
 
     /**
@@ -90,13 +89,13 @@ class AddditionalController extends Controller
                 ->withErrors($validator->errors())
                 ->withInput($request->all());
         } else {
-                $data = Additional::find($id);
+                $data = PasFoto::find($id);
                 $data->name = $request->name;
-                $data->price = $request->price;
+                $data->description = $request->description;
                 $data->save();
     
                 return redirect()
-                ->route('additional.index')
+                ->route('pasfoto.index')
                 ->with('message', 'Data berhasil disimpan.');
             }
     }
@@ -106,8 +105,9 @@ class AddditionalController extends Controller
      */
     public function destroy(string $id)
     {
-        $data =  Additional::find($id);
-        $data->delete();
+        $model = PasFoto::find($id);
+
+        $model->delete();
 
         return redirect()
         ->back()->with('message','data deleted!');

@@ -26,7 +26,6 @@
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->price }}</td>
-                                        <td>{{ $item->created_at }}</td>
                                         <td><a href="{{ route('additional.edit',$item->id) }}" class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i data-feather="edit"></i></a>
     
                                             <form class="d-inline" action="{{route('additional.destroy', $item->id)}}" method="POST" onSubmit="return confirm('Apakah anda yakin akan menghapus data ini?');">

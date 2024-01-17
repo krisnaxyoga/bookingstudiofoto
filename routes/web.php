@@ -45,7 +45,9 @@ Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
 Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
     Route::get('/admin', [\App\Http\Controllers\Admin\DashboardController::class, 'index']);
     Route::resource('/package', \App\Http\Controllers\Admin\PackgeController::class);
-    Route::resource('/additional', \App\Http\Controllers\Admin\AdditionalController::class);
+    Route::resource('/additional', \App\Http\Controllers\Admin\AddditionalController::class);
+    Route::resource('/pasfoto', \App\Http\Controllers\Admin\PasFotoController::class);
+    Route::get('/calender', [\App\Http\Controllers\Admin\CalenderController::class, 'index'])->name('calender');
 });
 
 // untuk customer
