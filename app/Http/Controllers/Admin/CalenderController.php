@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Carbon\CarbonPeriod;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+
 class CalenderController extends Controller
 {
     /**
@@ -18,6 +24,29 @@ class CalenderController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+     public function load_dates(Request $request): JsonResponse
+     {
+         $from = date('Y-m-d', strtotime($request->start));
+         $to = date('Y-m-d', strtotime($request->end));
+ 
+         $period = CarbonPeriod::create($from, $to);
+ 
+         $data = [];
+ 
+ 
+         foreach ($period as $date) {
+           
+                 $data[] = [
+                     'title' => 'click',
+                     'date' => date('Y-m-d', strtotime($date)),
+                     'color' => '#0077b6',
+                 ];
+         }
+ 
+         return response()->json($data);
+     }
+     
     public function create()
     {
         //

@@ -48,6 +48,8 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
     Route::resource('/additional', \App\Http\Controllers\Admin\AddditionalController::class);
     Route::resource('/pasfoto', \App\Http\Controllers\Admin\PasFotoController::class);
     Route::get('/calender', [\App\Http\Controllers\Admin\CalenderController::class, 'index'])->name('calender');
+
+    Route::get('/calender/load_dates', [\App\Http\Controllers\Admin\CalenderController::class, 'load_dates'])->name('calender.load_dates');
 });
 
 // untuk customer
