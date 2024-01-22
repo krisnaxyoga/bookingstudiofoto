@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
+use App\Models\Package;
+
 class CalenderController extends Controller
 {
     /**
@@ -18,7 +20,8 @@ class CalenderController extends Controller
      */
     public function index()
     {
-       return view('admin.calender.index');
+        $package = Package::all();
+       return view('admin.calender.index',compact('package'));
     }
 
     /**
@@ -29,24 +32,24 @@ class CalenderController extends Controller
      {
          $from = date('Y-m-d', strtotime($request->start));
          $to = date('Y-m-d', strtotime($request->end));
- 
+
          $period = CarbonPeriod::create($from, $to);
- 
+
          $data = [];
- 
- 
+
+
          foreach ($period as $date) {
-           
+
                  $data[] = [
                      'title' => 'click',
                      'date' => date('Y-m-d', strtotime($date)),
                      'color' => '#0077b6',
                  ];
          }
- 
+
          return response()->json($data);
      }
-     
+
     public function create()
     {
         //

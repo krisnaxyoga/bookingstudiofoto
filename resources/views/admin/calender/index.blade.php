@@ -10,12 +10,47 @@
   crossorigin="anonymous"></script>
 
 <section>
+
     <div class="container mt-5">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div id='calendar'></div>
+            <div class="mb-3">
+                <div class="panel-body">
+                    <div class="filter-div d-flex justify-content-between">
+                        <h2 class="title-bar no-border-bottom">
+                            Rate Calendar
+                        </h2>
+                        <div class="col-right">
+                            @if ($package->count() > 0)
+                            <span class="count-string">
+                                Showing 1 - {{ $package->count() }} of {{ $package->count() }} rooms
+                            </span>
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-panel">
+                <div class="panel-title"><strong>Calendar</strong></div>
+                <div class="panel-body no-padding" style="background: #f4f6f8; padding: 0px 15px;">
+                    <div class="row">
+                        <div class="col-md-3" style="border-right: 1px solid #dee2e6;">
+                            <p class="font-weight-700">Room Type</p>
+                            <ul class="nav nav-tabs flex-column vertical-nav">
+                                @foreach ($package as $item)
+                                <li class="nav-item event-name mb-2 btn btn-primary">
+                                    <a class="nav-link p-0">
+                                       {{$item->name}}
+                                    </a>
+                                </li>
+
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="col-md-9" style="background: white; padding: 15px;">
+                            <div id='calendar'></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -28,9 +63,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="eventModalLabel">Event Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body" id="eventDetails">
                 <p><strong>Title:</strong> <span id="eventTitle"></span></p>
@@ -45,7 +77,7 @@
 </div>
 
 <script>
- 
+
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 
